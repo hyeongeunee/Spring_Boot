@@ -4,6 +4,7 @@ import com.example.boot06.interceptor.LoginInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 /*
 *   [ Spring MVC 관련 설정 ]
@@ -29,5 +30,11 @@ public class WebConfig implements WebMvcConfigurer {
             .addPathPatterns("/users/*")
             .excludePathPatterns("/users/loginform")
             .excludePathPatterns("/users/login");
+    }
+
+    // webapp/resources 폴더 설정
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
     }
 }
