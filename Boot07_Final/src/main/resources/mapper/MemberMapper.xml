@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member">
+    <select id="getData" resultType="memberDto" parameterType="int">
+        SELECT NUM, NAME, ADDR
+        FROM MEMBER
+        WHERE NUM = #{num}
+    </select>
+
+    <update id="update" parameterType="memberDto">
+        UPDATE MEMBER
+        SET NAME = #{name},
+            ADDR = #{addr}
+        WHERE NUM = #{num}
+    </update>
+
+    <delete id="delete" parameterType="int">
+        DELETE
+        FROM MEMBER
+        WHERE NUM = #{num}
+    </delete>
+
+    <select id="getList"
+            resultType="memberDto"> -- select 된 row 하나를 어떤 type 에 담을지 결정하는 것이 resultType 이다.
+        SELECT NUM, NAME, ADDR
+        FROM MEMBER
+        ORDER BY NUM ASC
+    </select>
+
+    <insert id="insert" parameterType="memberDto">
+        INSERT INTO MEMBER
+            (NUM, NAME, ADDR)
+        VALUES (MEMBER_SEQ.NEXTVAL, #{name}, #{addr})
+    </insert>
+</mapper>
