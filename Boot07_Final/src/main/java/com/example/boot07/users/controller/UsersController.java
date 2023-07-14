@@ -2,16 +2,24 @@ package com.example.boot07.users.controller;
 
 import com.example.boot07.users.dto.UsersDto;
 import com.example.boot07.users.service.UsersService;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URLEncoder;
 import java.util.Map;
 
@@ -20,6 +28,21 @@ public class UsersController {
     // 의존 객체 주입 받기(DI)
     @Autowired
     private UsersService service;
+
+    @Value("${file.location}")
+    private String fileLocation;
+
+    @GetMapping(
+        value = "/users/images/{imageName}",
+        produces = {MediaType.IMAGE_PNG_VALUE, MediaType.IMAGE_GIF_VALUE, MediaType.IMAGE_JPEG_VALUE}
+    )
+    @ResponseBody
+    public byte[] profileImage(@PathVariable("imageName") String imageName) throws IOException {
+        String absolutePath = fileLocation + File.separator + imageName;
+        InputStream is = new FileInputStream(absolutePath);
+        // fileLocation 필드에는 파일이 저장되어 있는 서버의 파일 시스템상에서의 위치가 들어 있다.
+        return IOUtils.toByteArray(is);
+    }
 
     /*
         GET 방식 /users/signup_form 요청을 처리할 메소드

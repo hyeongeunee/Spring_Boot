@@ -1,4 +1,4 @@
-# upload 폴더에 업로드된 파일을 추적하지 않도록 설정
+# upload.jsp 폴더에 업로드된 파일을 추적하지 않도록 설정
 upload/
 
 HELP.md
