@@ -24,6 +24,8 @@
     <h1>인덱스 페이지입니다.</h1>
     <ul>
         <li><a href="/cafe/list">카페 글 목록보기</a></li>
+        <li><a href="/file/list">자료실 목록보기</a></li>
+        <li><a href="/gallery/list">갤러리 목록보기</a></li>
     </ul>
     <h3>공지사항</h3>
     <ul>

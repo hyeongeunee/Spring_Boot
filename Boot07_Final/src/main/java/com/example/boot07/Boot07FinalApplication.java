@@ -2,10 +2,12 @@ package com.example.boot07;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.PropertySource;
 
 import java.io.IOException;
 
 @SpringBootApplication
+@PropertySource(value = "classpath:custom.properties")
 public class Boot07FinalApplication {
 
     public static void main(String[] args) {
@@ -19,5 +21,4 @@ public class Boot07FinalApplication {
             e.printStackTrace();
         }
     }
-
 }

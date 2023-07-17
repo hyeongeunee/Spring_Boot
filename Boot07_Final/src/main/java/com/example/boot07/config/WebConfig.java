@@ -31,8 +31,9 @@ public class WebConfig implements WebMvcConfigurer {
             .excludePathPatterns("/users/loginform", "/users/login", "/users/signup_form", "/users/signup");
 
         registry.addInterceptor(loginInterceptor)
-            .addPathPatterns("/cafe/*")
-            .excludePathPatterns("/cafe/list", "/cafe/detail", "/cafe/ajax_comment_list");
+            .addPathPatterns("/cafe/*", "/file/*", "/gallery/*")
+            .excludePathPatterns("/cafe/list", "/cafe/detail", "/cafe/ajax_comment_list",
+                "/file/list", "/file/download", "/gallery/list", "/gallery/detail", "/gallery/images/*");
     }
 
     // webapp/resources 폴더 설정
