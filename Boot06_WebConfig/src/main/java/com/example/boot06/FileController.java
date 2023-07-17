@@ -18,7 +18,7 @@ import java.util.UUID;
 @Controller
 public class FileController {
 
-    @Value("C:\\acorn202304\\upload\\")
+    @Value("${file.location}")
     private String fileLocation;
 
     @GetMapping("/file/download")
