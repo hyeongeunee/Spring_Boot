@@ -1,15 +1,18 @@
 package com.example.boot08.users;
 
-import com.example.boot08.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.boot08.util.JwtUtil;
+
 @RestController
 public class UsersController {
+
     @Autowired
     private JwtUtil jwtUtil;
     //SecurityConfig 에서 Bean 으로 등록한 객체

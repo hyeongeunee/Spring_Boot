@@ -1,6 +1,5 @@
 package com.example.boot08.config;
 
-import com.example.boot08.filter.JwtFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,6 +12,8 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import com.example.boot08.filter.JwtFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -27,7 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     //spring security 예외 요청 경로 셋팅
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/h2-console/**", "/hello/token");
+        web.ignoring().antMatchers("/h2-console/**", "/hello/token", "/gallery/images/**");
     }
 
     //인증 메니저 객체도 Bean 으로 만들어 주어야 한다.
